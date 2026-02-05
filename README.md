@@ -43,7 +43,7 @@ python -m pip install -e .
     python examples/camera_use.py
     ```
 
-示例默认假定外接 C10 在 device_index=1，并在 Windows 使用 `backend=cv2.CAP_DSHOW`；按 `q` 或点窗口右上角关闭可退出，如果本机不带默认摄像头，需要设置device_index=0。
+示例默认假定外接 C10 在 device_index=1，并在 Windows 使用 `backend=cv2.CAP_DSHOW`；按 `q` 或点窗口右上角关闭可退出，如果本机不带默认摄像头，需要设置device_index=0，在ubuntu中使用时可能根据需要调整device_index=2，backend=cv2.CAP_V4L2。
 
 ## 目录结构
 - `src/synria_cam/`：SDK 实现
