@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/synria_c10.egg-info/PKG-INFO
+src/synria_c10.egg-info/SOURCES.txt
+src/synria_c10.egg-info/dependency_links.txt
+src/synria_c10.egg-info/requires.txt
+src/synria_c10.egg-info/top_level.txt
+src/synria_cam/__init__.py
+src/synria_cam/camera.py

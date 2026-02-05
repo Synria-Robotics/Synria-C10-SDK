@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: synria-cam
+Version: 0.1.0
+Summary: Python SDK to capture real-time frames from USB cameras.
+Author-email: Synria <dev@synria.local>
+License: MIT
+Project-URL: Homepage, https://example.com/synria-cam
+Project-URL: Source, https://example.com/synria-cam/src
+Keywords: camera,usb,opencv,video,sdk
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Video
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: opencv-python<5.0,>=4.9
+Requires-Dist: numpy<3.0,>=1.24
+
+# Synria USB Camera SDK
+
+Lightweight Python SDK for opening USB cameras and grabbing frames in real time using OpenCV.
+
+## Prerequisites
+- Python 3.10+
+- A working USB UVC-compatible camera
+- Windows, macOS, or Linux with OpenCV backend support
+
+## Installation
+```bash
+python -m pip install -e .
+```
+
+If OpenCV wheels are missing backend support on your platform, install the appropriate system packages first or build OpenCV with video IO support.
+
+## Quick start
+```python
+from synria_cam import USBCamera
+
+with USBCamera(device_index=0, width=1280, height=720) as cam:
+    frame = cam.snapshot()  # RGB numpy array
+    print(frame.shape)
+```
+
+## Streaming frames
+```python
+from synria_cam import USBCamera
+import cv2
+
+with USBCamera(device_index=0) as cam:
+    for frame in cam.stream(interval=0.02):  # ~50 FPS budget, real FPS depends on camera
+        cv2.imshow("preview", frame)
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+cv2.destroyAllWindows()
+```
+
+## Error handling
+The SDK raises `CameraError` when the device cannot open or when frame capture times out. Wrap capture calls in try/except if you need custom recovery logic.
+
+## Project layout
+- `src/synria_cam/`: SDK implementation
+- `examples/`: runnable demos
+
+## Next steps
+- Add unit tests that mock `cv2.VideoCapture`
+- Extend with camera property setters (exposure, FPS, fourcc) as needed

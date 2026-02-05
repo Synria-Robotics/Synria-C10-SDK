@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synria_c10"
+version = "0.1.0"
+description = "Python SDK to capture real-time frames from USB cameras."
+requires-python = ">=3.10"
+readme = "README.md"
+authors = [{ name = "Synria", email = "dev@synria.local" }]
+license = { text = "MIT" }
+keywords = ["camera", "usb", "opencv", "video", "sdk"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Multimedia :: Video",
+  "Topic :: Software Development :: Libraries"
+]
+dependencies = [
+  "opencv-python>=4.9,<5.0",
+  "numpy>=1.24,<3.0"
+]
+
+[project.urls]
+Homepage = "https://example.com/synria_c10"
+Source = "https://example.com/synria_c10/src"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
